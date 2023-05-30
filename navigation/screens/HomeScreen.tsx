@@ -1,21 +1,20 @@
-import { StatusBar } from "expo-status-bar";
 import {
-  Button,
   StyleSheet,
-  Text,
   Image,
   View,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { useLanguageContext } from "../../contexts/LanguageContext";
 import Header from "../../components/common/Header";
+import ProductsCarousel from "../../components/home/ProductsCarousel";
+import Brands from "../../components/home/Brands";
+import TopBrands from "../../components/home/TopBrands";
+import FeaturedOffersScrollView from "../../components/home/FeaturedOffersScrollView";
 
 export default function HomeScreen() {
-  const { t, locale, setLocale } = useLanguageContext();
   return (
     <View style={[styles.container]}>
-      <Header height={200}>
+      <Header height={250}>
         <Header.Start>
           <TouchableOpacity activeOpacity={0.5}>
             <Image source={require("../../assets/search.png")} />
@@ -35,16 +34,28 @@ export default function HomeScreen() {
           </View>
         </Header.End>
       </Header>
-      <Text>{t?.("title")}</Text>
-      <Text>{t?.("description")}</Text>
-      <Button
-        onPress={() =>
-          locale === "en" ? setLocale?.("ar") : setLocale?.("en")
-        }
-        title={`Change me to ${locale === "en" ? "ar" : "en"} `}
-      />
-
-      <StatusBar style="auto" />
+      <View
+        style={{
+          position: "relative",
+          paddingHorizontal: 20,
+          flex: 1,
+        }}
+      >
+        <Image
+          source={require("../../assets/arrow-bg.png")}
+          style={{
+            position: "absolute",
+            top: "5%",
+            left: "15%",
+          }}
+        />
+        <ProductsCarousel />
+        <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
+          <TopBrands />
+          <Brands />
+          <FeaturedOffersScrollView />
+        </ScrollView>
+      </View>
     </View>
   );
 }
@@ -52,10 +63,18 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: "white",
     alignItems: "center",
   },
   flexRow: {
     flexDirection: "row",
     gap: 10,
+  },
+  column: {
+    flex: 1,
+    alignItems: "center",
+    marginVertical: 2,
+    justifyContent: "center",
+    backgroundColor: "#eeeeee",
   },
 });
