@@ -17,6 +17,7 @@ const languageContext = createContext<
     locale: locales;
     setLocale: Dispatch<SetStateAction<locales>>;
     t: Function;
+    dir: "ltr" | "rtl";
   }>
 >({});
 
@@ -34,7 +35,7 @@ export function LanguageProvider({ children }: IProps) {
   }, [locale]);
 
   return (
-    <languageContext.Provider value={{ setLocale, t, locale }}>
+    <languageContext.Provider value={{ setLocale, t, locale, dir: i18n.dir() }}>
       {children}
     </languageContext.Provider>
   );

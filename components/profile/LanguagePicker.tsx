@@ -3,17 +3,20 @@ import { Picker } from "@react-native-picker/picker";
 import { useLanguageContext } from "../../contexts/LanguageContext";
 
 export default function LanguagePicker() {
-  const { locale, setLocale } = useLanguageContext();
+  const { t, locale, setLocale, dir } = useLanguageContext();
   return (
     <View
       style={{
-        flexDirection: "row",
+        flexDirection: dir === "rtl" ? "row-reverse" : "row",
         gap: 10,
         padding: 15,
         alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
-      <Text style={[styles.textMedium]}>Change The Language</Text>
+      <Text style={[styles.textMedium, { flex: 1 }]}>
+        {t?.("Change The Language")}
+      </Text>
       <Picker
         selectedValue={locale}
         style={{
