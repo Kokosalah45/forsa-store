@@ -1,10 +1,9 @@
 //@ts-ignore
 import { Card } from "react-native-shadow-cards";
-import { View, Text, FlatList, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
 import { useMemo } from "react";
 import { useGetFeaturedInfinite } from "../../hooks/useGetFeaturedInfinite";
 import { FeaturedItemType } from "../../types";
-import { useLanguageContext } from "../../contexts/LanguageContext";
 import { useTranslation } from "react-i18next";
 const FeaturedOffersScrollView = () => {
   const { t } = useTranslation();
@@ -46,7 +45,54 @@ const FeaturedOffersScrollView = () => {
           >
             {t?.("Featured offers")}
           </Text>
-          <FlatList
+          <ScrollView
+            contentContainerStyle={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+            }}
+          >
+            {featureItemData?.map(
+              ({
+                brand: {
+                  sector: { label },
+                },
+                description,
+                expiry_date,
+              }) => (
+                <TouchableOpacity style={{ margin: 3, width: "48%" }}>
+                  <Card style={{ width: "100%" }}>
+                    <Image source={require("../../assets/product-big.png")} />
+                    <Card
+                      style={{
+                        marginTop: -50,
+                        flex: 1,
+                        width: "100%",
+                        padding: 5,
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <View style={{ alignItems: "center" }}>
+                        <Text
+                          style={{
+                            fontSize: 20,
+                            fontWeight: "500",
+                          }}
+                        >
+                          {label}
+                        </Text>
+                        <Text style={{ color: "gray", padding: 2 }}>
+                          {description}
+                        </Text>
+                      </View>
+                      <Text style={{ color: "gray" }}>{expiry_date}</Text>
+                    </Card>
+                  </Card>
+                </TouchableOpacity>
+              )
+            )}
+          </ScrollView>
+          {/* <FlatList
             numColumns={2}
             key={2}
             style={{
@@ -97,7 +143,7 @@ const FeaturedOffersScrollView = () => {
                 </Card>
               </Card>
             )}
-          />
+          /> */}
         </>
       )}
     </View>

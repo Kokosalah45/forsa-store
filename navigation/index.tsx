@@ -35,7 +35,7 @@ function MainNavigator() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "blue",
+          activeTintColor: "#072040",
           inactiveTintColor: "grey",
           labelStyle: { paddingBottom: 10, fontSize: 10 },
           style: { padding: 10, height: 70 },
