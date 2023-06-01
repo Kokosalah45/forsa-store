@@ -37,7 +37,7 @@ const BrandsScrollView = ({
           style={{
             padding: 10,
             width: 180,
-            marginRight: 10,
+            marginHorizontal: 5,
             marginVertical: 10,
             flex: 1,
           }}

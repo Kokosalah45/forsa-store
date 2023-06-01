@@ -1,15 +1,6 @@
-import {
-  StyleSheet,
-  Image,
-  View,
-  TouchableOpacity,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import Header from "../../components/common/Header";
-import ProductsCarousel from "../../components/home/ProductsCarousel";
-import Brands from "../../components/home/Brands";
-import TopBrands from "../../components/home/TopBrands";
-import FeaturedOffersScrollView from "../../components/home/FeaturedOffersScrollView";
+import MainView from "../../components/home/FeaturedOffersScrollView";
 
 export default function HomeScreen() {
   return (
@@ -34,28 +25,8 @@ export default function HomeScreen() {
           </View>
         </Header.End>
       </Header>
-      <View
-        style={{
-          position: "relative",
-          paddingHorizontal: 20,
-          flex: 1,
-        }}
-      >
-        <Image
-          source={require("../../assets/arrow-bg.png")}
-          style={{
-            position: "absolute",
-            top: "5%",
-            left: "15%",
-          }}
-        />
-        <ProductsCarousel />
-        <ScrollView showsVerticalScrollIndicator={false} nestedScrollEnabled>
-          <TopBrands />
-          <Brands />
-          <FeaturedOffersScrollView />
-        </ScrollView>
-      </View>
+
+      <MainView />
     </View>
   );
 }

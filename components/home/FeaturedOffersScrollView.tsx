@@ -1,10 +1,20 @@
 //@ts-ignore
 import { Card } from "react-native-shadow-cards";
-import { View, Text, TouchableOpacity, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+  FlatList,
+} from "react-native";
 import { useMemo } from "react";
 import { useGetFeaturedInfinite } from "../../hooks/useGetFeaturedInfinite";
 import { FeaturedItemType } from "../../types";
 import { useTranslation } from "react-i18next";
+import ProductsCarousel from "./ProductsCarousel";
+import TopBrands from "./TopBrands";
+import Brands from "./Brands";
 const FeaturedOffersScrollView = () => {
   const { t } = useTranslation();
   const {
@@ -35,116 +45,93 @@ const FeaturedOffersScrollView = () => {
   }, [data?.pages?.length]);
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       {isLoading ? (
         <Text>loading...</Text>
       ) : (
-        <>
-          <Text
-            style={{ paddingVertical: 10, fontSize: 20, fontWeight: "700" }}
-          >
-            {t?.("Featured offers")}
-          </Text>
-          <ScrollView
-            contentContainerStyle={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "center",
-            }}
-          >
-            {featureItemData?.map(
-              ({
-                brand: {
-                  sector: { label },
-                },
-                description,
-                expiry_date,
-              }) => (
-                <TouchableOpacity style={{ margin: 3, width: "48%" }}>
-                  <Card style={{ width: "100%" }}>
-                    <Image source={require("../../assets/product-big.png")} />
-                    <Card
-                      style={{
-                        marginTop: -50,
-                        flex: 1,
-                        width: "100%",
-                        padding: 5,
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <View style={{ alignItems: "center" }}>
-                        <Text
-                          style={{
-                            fontSize: 20,
-                            fontWeight: "500",
-                          }}
-                        >
-                          {label}
-                        </Text>
-                        <Text style={{ color: "gray", padding: 2 }}>
-                          {description}
-                        </Text>
-                      </View>
-                      <Text style={{ color: "gray" }}>{expiry_date}</Text>
-                    </Card>
-                  </Card>
-                </TouchableOpacity>
-              )
-            )}
-          </ScrollView>
-          {/* <FlatList
-            numColumns={2}
-            key={2}
-            style={{
-              gap: 5,
-              padding: 5,
-            }}
-            onEndReached={handleLoadMore}
-            onEndReachedThreshold={0.3}
-            showsVerticalScrollIndicator={false}
-            removeClippedSubviews
-            nestedScrollEnabled
-            keyExtractor={(item) => item.id}
-            data={featureItemData}
-            renderItem={({
-              item: {
-                brand: {
-                  sector: { label },
-                },
-                description,
-                expiry_date,
+        <FlatList
+          numColumns={2}
+          key={2}
+          style={{
+            gap: 5,
+            paddingHorizontal: 15,
+            marginTop: -40,
+          }}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0.3}
+          showsVerticalScrollIndicator={false}
+          ListHeaderComponent={
+            <View
+              style={{
+                position: "relative",
+
+                flex: 1,
+              }}
+            >
+              <Image
+                source={require("../../assets/arrow-bg.png")}
+                style={{
+                  position: "absolute",
+                  top: "5%",
+                  left: "15%",
+                }}
+              />
+              <ProductsCarousel />
+              <TopBrands />
+              <Brands />
+              <Text
+                style={{
+                  paddingVertical: 10,
+                  fontSize: 20,
+                  fontWeight: "700",
+                }}
+              >
+                {t?.("Featured offers")}
+              </Text>
+            </View>
+          }
+          removeClippedSubviews
+          nestedScrollEnabled
+          keyExtractor={(item) => item.id}
+          data={featureItemData}
+          renderItem={({
+            item: {
+              brand: {
+                sector: { label },
               },
-            }) => (
-              <Card style={{ flex: 0.5, margin: 3, overflow: "hidden" }}>
-                <Image source={require("../../assets/product-big.png")} />
-                <Card
-                  style={{
-                    marginTop: -50,
-                    flex: 1,
-                    width: "100%",
-                    padding: 5,
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <View style={{ alignItems: "center" }}>
-                    <Text
-                      style={{
-                        fontSize: 20,
-                        fontWeight: "500",
-                      }}
-                    >
-                      {label}
-                    </Text>
-                    <Text style={{ color: "gray", padding: 2 }}>
-                      {description}
-                    </Text>
-                  </View>
-                  <Text style={{ color: "gray" }}>{expiry_date}</Text>
-                </Card>
+              description,
+              expiry_date,
+            },
+          }) => (
+            <Card style={{ flex: 0.5, margin: 5, overflow: "hidden" }}>
+              <Image source={require("../../assets/product-big.png")} />
+              <Card
+                style={{
+                  marginTop: -50,
+                  flex: 1,
+                  width: "100%",
+                  padding: 5,
+                  justifyContent: "space-between",
+                }}
+              >
+                <View style={{ alignItems: "center" }}>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      fontWeight: "500",
+                    }}
+                  >
+                    {label}
+                  </Text>
+                  <Text style={{ color: "gray", padding: 2 }}>
+                    {description}
+                  </Text>
+                </View>
+                <Text style={{ color: "gray" }}>{expiry_date}</Text>
               </Card>
-            )}
-          /> */}
-        </>
+            </Card>
+          )}
+        />
       )}
     </View>
   );
