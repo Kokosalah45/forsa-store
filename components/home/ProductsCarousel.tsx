@@ -37,6 +37,7 @@ const ProductsCarousel = () => {
           style={{
             flex: 1,
           }}
+          imageStyle={{ transform: [{ scale: 1.1 }] }}
           source={featured}
         >
           <TouchableOpacity
