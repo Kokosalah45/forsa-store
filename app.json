@@ -4,28 +4,31 @@
     "slug": "mini-store",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    // "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    // "splash": {
+    //   "image": "./assets/splash.png",
+    //   "resizeMode": "contain",
+    //   "backgroundColor": "#ffffff"
+    // },
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
+      // "adaptiveIcon": {
+      //   "foregroundImage": "./assets/adaptive-icon.png",
+      //   "backgroundColor": "#ffffff"
+      // },
       "package": "forsa.ministore"
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    // "web": {
+    //   "favicon": "./assets/favicon.png"
+    // },
+    "extra": {
+      "eas": {
+        "projectId": "6c626b54-669a-4629-9069-725bcf20b043"
+      }
     }
   }
 }
