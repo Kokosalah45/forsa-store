@@ -1,9 +1,25 @@
 import React from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
 import Header from "../../components/common/Header";
-import { TouchableOpacity, Image, StyleSheet, View, Text } from "react-native";
-import { Picker } from "@react-native-picker/picker";
+import {
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  Alert,
+  Share,
+} from "react-native";
 import LanguagePicker from "../../components/profile/LanguagePicker";
+
+const onShare = async () => {
+  try {
+    await Share.share({
+      message: "Check out my app ",
+    });
+  } catch (error: any) {
+    Alert.alert(error.message);
+  }
+};
 
 export default function ProfileScreen() {
   return (
@@ -36,6 +52,11 @@ export default function ProfileScreen() {
       >
         <Image source={require("../../assets/profile.png")} />
         <Text style={[styles.textLarge]}>Mohamed Gamal</Text>
+      </View>
+      <View>
+        <TouchableOpacity onPress={onShare} style={{ padding: 15 }}>
+          <Text style={[styles.textMedium]}>Share the App</Text>
+        </TouchableOpacity>
       </View>
       <LanguagePicker />
     </View>
