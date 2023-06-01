@@ -5,8 +5,9 @@ import { useMemo } from "react";
 import { useGetFeaturedInfinite } from "../../hooks/useGetFeaturedInfinite";
 import { FeaturedItemType } from "../../types";
 import { useLanguageContext } from "../../contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 const FeaturedOffersScrollView = () => {
-  const { t } = useLanguageContext();
+  const { t } = useTranslation();
   const {
     dataObj: {
       data,

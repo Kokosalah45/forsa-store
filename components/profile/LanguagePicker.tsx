@@ -1,13 +1,13 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Picker } from "@react-native-picker/picker";
-import { useLanguageContext } from "../../contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 export default function LanguagePicker() {
-  const { t, locale, setLocale, dir } = useLanguageContext();
+  const { t, i18n } = useTranslation();
   return (
     <View
       style={{
-        flexDirection: dir === "rtl" ? "row-reverse" : "row",
+        flexDirection: i18n.dir() === "rtl" ? "row-reverse" : "row",
         gap: 10,
         padding: 15,
         alignItems: "center",
@@ -18,12 +18,12 @@ export default function LanguagePicker() {
         {t?.("Change The Language")}
       </Text>
       <Picker
-        selectedValue={locale}
+        selectedValue={i18n.language}
         style={{
           flex: 1,
         }}
         mode="dialog"
-        onValueChange={(itemValue) => setLocale?.(itemValue)}
+        onValueChange={(itemValue) => i18n.changeLanguage(itemValue)}
       >
         <Picker.Item label="English" value="en" />
         <Picker.Item label="Arabic" value="ar" />

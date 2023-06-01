@@ -2,7 +2,6 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { ScrollView } from "react-native";
 import { SectorType } from "../../types";
 import { Dispatch, SetStateAction } from "react";
-import { useLanguageContext } from "../../contexts/LanguageContext";
 
 interface IProps {
   sectorData: SectorType["results"];
@@ -10,8 +9,6 @@ interface IProps {
   setSectorVal: Dispatch<SetStateAction<string>>;
 }
 const SectorsScrollView = ({ sectorVal, sectorData, setSectorVal }: IProps) => {
-  const { t, locale, setLocale } = useLanguageContext();
-
   return (
     <View
       style={{

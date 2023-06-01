@@ -8,10 +8,10 @@ import {
 import featured from "../../assets/featured.png";
 import nike from "../../assets/nike.png";
 import Swiper from "react-native-swiper";
-import { useLanguageContext } from "../../contexts/LanguageContext";
+import { useTranslation } from "react-i18next";
 
 const ProductsCarousel = () => {
-  const { t } = useLanguageContext();
+  const { t } = useTranslation();
   return (
     <View
       style={{
