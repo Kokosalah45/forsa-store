@@ -55,7 +55,6 @@ const FeaturedOffersScrollView = () => {
           style={{
             gap: 5,
             paddingHorizontal: 15,
-            marginTop: -40,
           }}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.3}
@@ -64,7 +63,6 @@ const FeaturedOffersScrollView = () => {
             <View
               style={{
                 position: "relative",
-
                 flex: 1,
               }}
             >
@@ -76,7 +74,7 @@ const FeaturedOffersScrollView = () => {
                   left: "15%",
                 }}
               />
-              <ProductsCarousel />
+
               <TopBrands />
               <Brands />
               <Text

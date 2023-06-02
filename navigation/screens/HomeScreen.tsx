@@ -1,6 +1,7 @@
 import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
 import Header from "../../components/common/Header";
 import MainView from "../../components/home/FeaturedOffersScrollView";
+import ProductsCarousel from "../../components/home/ProductsCarousel";
 
 export default function HomeScreen() {
   return (
@@ -25,7 +26,7 @@ export default function HomeScreen() {
           </View>
         </Header.End>
       </Header>
-
+      <ProductsCarousel />
       <MainView />
     </View>
   );

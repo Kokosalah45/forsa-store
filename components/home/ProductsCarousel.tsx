@@ -15,7 +15,8 @@ const ProductsCarousel = () => {
   return (
     <View
       style={{
-        //marginTop: -45,
+        marginTop: -45,
+        paddingHorizontal: 20,
         marginBottom: 10,
         height: 138,
       }}
